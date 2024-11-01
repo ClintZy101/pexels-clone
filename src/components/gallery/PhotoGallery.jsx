@@ -1,47 +1,45 @@
-import React from "react";
-import { saveAs } from "file-saver";
+import React, { useState } from "react";
+import PhotoModal from "./PhotoModal";
 
 export default function PhotoGallery({ images }) {
-//   const handleDownload = (url) => {
-//     const link = document.createElement("a");
-//     link.href = url;
-//     link.download = "pexels-photo.jpg";
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-//   };
+  // const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const handleDownload = (url, alt) => {
-    saveAs(url, alt);
-  };
-  {
-    /* Portrait Gallery with 3 Columns */
-  }
   return (
-    <div className="grid grid-cols-3 gap-5 mt-5">
-      {images.map((img) => (
-        <div className="relative">
-          <a href={img.src.portrait} download>
+    <div>
+        {/* Heading */}
+         <div className="p-5 flex">
+          <h1 className="font-bold text-xl">Free Photos: provided by PEXELS</h1>
+        </div>
+
+            {/* Image Collection */}
+      <div className="grid grid-cols-3 gap-5 mt-5 ">
+        {images.map((img) => (
+          <div className="relative group  cursor-pointer">
             <img
-              className="hover:scale-105  transition-all duration-700 "
+              className="hover:scale-[1.02] hover:opacity-80 transition-all duration-700  "
               key={img.id}
               src={img.src.portrait}
               alt={img.alt}
-            //   onClick={() => handleDownload(img.src.original)}
+              //   height={"300px"}
+              //   onClick={() => handleDownload(img.src.original, img.alt)}
             />
-          </a>
-          <div className="abolute bottom-20">
-            <span className="flex space-x-2 items-center">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/266/266033.png"
-                alt={img.photographer}
-                className="h-5 w-5 rounded-full"
-              />
-              <h4>{img.photographer}</h4>
-            </span>
+
+            <div className="absolute top-0 hidden group-hover:block bg-black bg-opacity-10 p-5 w-full">
+              <div className="text-white">
+                <h4>{img.alt}</h4>
+              </div>
+              <span className="flex space-x-2 items-center">
+                <img
+                  src="https://banner2.cleanpng.com/20180613/oaw/aa73wo5kh.webp"
+                  alt={img.photographer}
+                  className="h-7 rounded-md bg-white"
+                />
+                <h4 className="font-bold text-white">{img.photographer}</h4>
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
