@@ -1,0 +1,33 @@
+alt
+: 
+"Shallow Focus Photography of Brown Tree Trunk"
+avg_color
+: 
+"#505D33"
+height
+: 
+3456
+id
+: 
+1250260
+liked
+: 
+false
+photographer
+: 
+"Mahima"
+photographer_id
+: 
+518693
+photographer_url
+: 
+"https://www.pexels.com/@mahima-518693"
+src
+: 
+{original: 'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg', large2x: 'https://images.pexels.com/photos/1250260/pexels-ph….jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', large: 'https://images.pexels.com/photos/1250260/pexels-ph…250260.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', medium: 'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&h=350', small: 'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&h=130', …}
+url
+: 
+"https://www.pexels.com/photo/shallow-focus-photography-of-brown-tree-trunk-1250260/"
+width
+: 
+5184
