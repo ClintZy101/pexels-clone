@@ -10,7 +10,7 @@ export default function SearchBar() {
   }
   
   return (
-    <form className="flex bg-white rounded relative">
+    <form className="flex bg-white rounded relative ">
       
       <div className="border-r rounded grid items-center cursor-pointer relative">
         <div className="flex p-2 space-x-2 items-center justify-center w-[150px]"
