@@ -12,10 +12,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<Search />} />
-        <Route path="/" element={<Search />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/photo/:id" element={<SinglePhoto />} />
-        {/* <Route path="/product/:productId" element={<Product />} /> */}
       </Routes>
     </BrowserRouter>
   );

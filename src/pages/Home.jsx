@@ -63,7 +63,7 @@ export default function Home() {
 
   //   console.log(images);
 
-  // create functions
+  // create functions  implement useHooks
   // filter images by size
   // create a modal for each picture
 
