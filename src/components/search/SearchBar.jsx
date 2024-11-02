@@ -16,7 +16,8 @@ export default function SearchBar() {
         <div className="flex p-2 space-x-2 items-center justify-center w-[150px]"
         onClick={()=>handleDropdown()}
         >
-          <h1 className="">Photos</h1>
+          <h1 className="">{searchType}</h1>
+
           <BiChevronDown />
         </div>
         {/* Drop Down */}
