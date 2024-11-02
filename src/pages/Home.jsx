@@ -97,14 +97,14 @@ export default function Home() {
         >
           Videos
         </h1>
-        <h1
+        {/* <h1
           className={`${
             chosenGallery === "trending" ? "font-bold" : ""
           } text-2xl  cursor-pointer hover:underline`}
           onClick={() => setChosenGallery("trending")}
         >
           Trending
-        </h1>
+        </h1> */}
       </div>
       {chosenGallery === 'photos' && <PhotoGallery images={images} /> }
       {chosenGallery === 'videos' && <VideoGallery videos={videos}/> }
