@@ -1,13 +1,13 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
-import LitUpBorderButton from "../components/buttons/LitUpBorderButton";
 import ButtonWithDropDown from "../components/buttons/ButtonWithDropDown";
 
 export default function SinglePhoto() {
   const location = useLocation();
   const { id } = useParams();
-  // console.log(location.state, id)
+
   const image = location.state;
+
   return (
     // whole view port
     <div className="w-screen h-screen grid place-items-center ">
@@ -26,10 +26,15 @@ export default function SinglePhoto() {
               </h4>
             </div>
           </a>
-          
+
           {/* Download Options */}
           <div className="">
-            <ButtonWithDropDown />
+            <ButtonWithDropDown
+              photo_title={image.alt || image.id}
+              photo_url={image.src}
+              orig_width={image.width}
+              orig_height={image.height}
+            />
           </div>
         </div>
 
