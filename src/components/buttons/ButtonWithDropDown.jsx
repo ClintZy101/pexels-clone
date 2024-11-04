@@ -3,19 +3,21 @@ import LitUpBorderButton from "./LitUpBorderButton";
 import { getImageDimensions } from "../../utils/getImageDimensions";
 import { saveAs } from "file-saver";
 
+// create  more functionality for saying thanks to photographers and links to pexel
 const handleDownload = (url, title) => {
     saveAs(url, title);
   };
-  
+
 const ImageDimensionButton = ({
   image_url,
   photo_title,
   imageOrientation,
   imageDimension,
+  setIsOpen
 }) => {
   return (
     <button
-      onClick={() => handleDownload(image_url, photo_title)}
+      onClick={() => {handleDownload(image_url, photo_title); setIsOpen(true)}}
       className="flex space-x-5 hover:bg-gray-100 w-full justify-center items-center border-b h-12"
     >
       <h2 className="font-bold">{imageOrientation}</h2>
@@ -29,11 +31,12 @@ export default function ButtonWithDropDown({
   photo_url,
   orig_width,
   orig_height,
+  setIsOpen
 }) {
   
 
   const [isHovered, setIsHovered] = useState(false);
-
+  
   const tinyImageUrl = photo_url.tiny;
   const smallImageUrl = photo_url.small;
   const mediumImageUrl = photo_url.medium;
@@ -74,20 +77,23 @@ export default function ButtonWithDropDown({
             image_url={landscapeImageUrl}
             imageDimension={landscapeImageDimensions}
             imageOrientation="Landscape"
+            setIsOpen={setIsOpen}
           />
           <ImageDimensionButton
             photo_title={photo_title}
             image_url={portraitImageUrl}
             imageDimension={portraitImageDimensions}
             imageOrientation="Portrait"
+            setIsOpen={setIsOpen}
           />
           <ImageDimensionButton
             photo_title={photo_title}
             image_url={largeImageUrl}
             imageDimension={largeImageDimensions}
             imageOrientation="Large"
+            setIsOpen={setIsOpen}
           />
-          <ImageDimensionButton
+          {/* <ImageDimensionButton
             photo_title={photo_title}
             image_url={mediumImageUrl}
             imageDimension={mediumImageDimensions}
@@ -98,13 +104,14 @@ export default function ButtonWithDropDown({
             image_url={smallImageUrl}
             imageDimension={smallImageDimensions}
             imageOrientation="Small"
-          />
+          /> */}
 
           <ImageDimensionButton
             photo_title={photo_title}
             image_url={tinyImageUrl}
             imageDimension={tinyImageDimensions}
             imageOrientation="Tiny"
+            setIsOpen={setIsOpen}
           />
         </div>
       )}

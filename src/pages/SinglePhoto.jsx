@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ButtonWithDropDown from "../components/buttons/ButtonWithDropDown";
+import DownloadModal from "../components/modals/DownloadModal";
 
 export default function SinglePhoto() {
   const location = useLocation();
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   const image = location.state;
+  console.log(isOpen)
 
   return (
     // whole view port
     <div className="w-screen h-screen grid place-items-center ">
+      {isOpen && (
+        <DownloadModal
+          photographer={image.photographer}
+          photographer_url={image.photographer_url}
+          photo_url={image.src.tiny}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      )}
+
       <div className="w-4/5 h-max grid gap-5 p-5 mt-14 shadow-lg">
         <div className="w-full flex justify-between mt-2">
           {/* link to photographer profile in pexels */}
@@ -34,6 +47,7 @@ export default function SinglePhoto() {
               photo_url={image.src}
               orig_width={image.width}
               orig_height={image.height}
+              setIsOpen={setIsOpen}
             />
           </div>
         </div>

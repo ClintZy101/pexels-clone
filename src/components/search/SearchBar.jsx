@@ -3,7 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { CiImageOn, CiSearch, CiVideoOn } from "react-icons/ci";
 
 export default function SearchBar() {
-  const [searchType, setSearchType] = useState("photos");
+  const [searchType, setSearchType] = useState("Photos");
   const [isOpen, setIsOpen] = useState(false);
   const handleDropdown =() => {
     setIsOpen(!isOpen)

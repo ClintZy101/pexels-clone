@@ -6,6 +6,8 @@ import HoverPlayVideo from "../components/gallery/HoverPlayVideo";
 import VideoGallery from "../components/gallery/VideoGallery";
 
 export default function Home() {
+  // implement a useHook on this for performance's sake
+
   const API_URL = "https://api.pexels.com/v1/";
   const curatedEndPoint = ` https://api.pexels.com/v1/curated?per_page=80`;
   const popularVideosEndPoint =
@@ -58,7 +60,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchImages();
+    // fetchImages();
   }, [chosenGallery]);
 
   //   console.log(images);
@@ -70,7 +72,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <div className=" h-[600px] bg-[url('bg-1.jpg')]  bg-no-repeat bg-cover border-b border-solid grid justify-center items-center ">
+      <div className=" h-[600px] bg-[url('/bg-1.jpg')]  bg-no-repeat bg-cover border-b border-solid grid justify-center items-center ">
         <div className="mx-5">
           <h1 className="text-white font-semibold text-3xl mb-2">
             The best free stock photos, royalty free <br /> images & videos
