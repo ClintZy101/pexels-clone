@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ButtonWithDropDown from "../components/buttons/ButtonWithDropDown";
 import DownloadModal from "../components/modals/DownloadModal";
+import LinkToHomeButton from "../components/buttons/LinkToHomeButton";
 
 export default function SinglePhoto() {
   const location = useLocation();
@@ -9,7 +10,7 @@ export default function SinglePhoto() {
   const [isOpen, setIsOpen] = useState(false);
 
   const image = location.state;
-  console.log(isOpen)
+
 
   return (
     // whole view port
@@ -25,7 +26,13 @@ export default function SinglePhoto() {
       )}
 
       <div className="w-4/5 h-max grid gap-5 p-5 mt-14 shadow-lg">
-        <div className="w-full flex justify-between mt-2">
+        <div className="w-full flex justify-end">
+          <LinkToHomeButton />
+        </div>
+        <div className="w-full text-center font-semibold">
+          <h1>{image.alt || "Photo Title"}</h1>
+        </div>
+        <div className="w-full flex items-center justify-between mt-2">
           {/* link to photographer profile in pexels */}
           <a href={image.photographer_url}>
             <div className="flex space-x-2  ">

@@ -8,7 +8,7 @@ export default function VideoGallery({  videos }) {
     <div>
       {/* Heading */}
       <div className="p-5 flex">
-        <h1 className="font-bold text-xl">Free Photos: provided by PEXELS</h1>
+        <h1 className="font-bold text-xl">Free Videos: provided by PEXELS</h1>
       </div>
 
       {/* Video Collection */}

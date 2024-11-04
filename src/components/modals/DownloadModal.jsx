@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import LitUpBorderButton from "../buttons/LitUpBorderButton";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { CgClose } from "react-icons/cg";
-import { Link } from "react-router-dom";
+
+import LinkToHomeButton from "../buttons/LinkToHomeButton";
 
 export default function DownloadModal({
   photographer,
@@ -11,15 +11,36 @@ export default function DownloadModal({
   isOpen,
   setIsOpen,
 }) {
-  const handlePropagation = (e) => {
-    e.stopPropagation;
-  };
+ const modalRef = useRef(null);
+ const handleCloseModal = () => {
+    setIsOpen(!isOpen)
+ }
+
+  useEffect(() => {
+    // Function to detect click outside modal
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        // onClose();
+        handleCloseModal()
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    
+    // Cleanup the event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [handleCloseModal]);
   return (
     // whole view port, modal background
 
     <div className="absolute top-0 z-50 w-screen h-[2000px] bg-black bg-opacity-70">
       {/* Modal */}
-      <div className="w-5/6 h-max lg:w-3/5 lg:h-[400px] bg-white mx-auto mt-[150px] grid gap-5 place-items-center rounded-lg p-5">
+      <div 
+      ref={modalRef}
+      className="w-5/6 h-max lg:w-3/5 lg:h-[400px] bg-white mx-auto mt-[150px] grid gap-5 place-items-center rounded-lg p-5">
         <div className="flex justify-between   w-full">
           <div
             onClick={() => setIsOpen(false)}
@@ -27,11 +48,9 @@ export default function DownloadModal({
           >
             <CgClose className="text-2xl hover:text-white duration-500" />
           </div>
-          <Link to={'/'}>
-          <div className="flex space-x-2 items-center cursor-pointer  hover:font-bold duration:500 transition-all">
-            <IoMdArrowRoundBack /> <h3>Go back Home</h3>
-          </div>
-          </Link>
+
+          <LinkToHomeButton />
+
         </div>
         <h1 className="font-bold text-2xl"> Downloaded Successfully!</h1>
 

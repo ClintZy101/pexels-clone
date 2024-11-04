@@ -8,20 +8,18 @@ import VideoGallery from "../components/gallery/VideoGallery";
 export default function Home() {
   // implement a useHook on this for performance's sake
 
-  const API_URL = "https://api.pexels.com/v1/";
+  // const API_URL = "https://api.pexels.com/v1/";
   const curatedEndPoint = ` https://api.pexels.com/v1/curated?per_page=80`;
   const popularVideosEndPoint =
     "https://api.pexels.com/videos/popular?per_page=80";
   const [chosenGallery, setChosenGallery] = useState("photos");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
   const [videos, setVideos] = useState([]);
   const [images, setImages] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const searchEndPoint = `https://api.pexels.com/v1/search?query=${searchQuery}&per_page=80`;
+ 
 
-  const fetchImages = async () => {
+  const fetchData = async () => {
     if (chosenGallery === "photos") {
       setIsLoading(true);
       try {
@@ -60,7 +58,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // fetchImages();
+    // fetchData();
   }, [chosenGallery]);
 
   //   console.log(images);
