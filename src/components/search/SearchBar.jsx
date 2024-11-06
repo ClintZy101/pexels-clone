@@ -53,7 +53,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex bg-white rounded  text-black border  sm:w-[500px]  md:w-[700px] mx-auto"
+      className="flex bg-white rounded  text-black border w-full    md:w-[700px] mx-auto"
     >
       <div className="border-r rounded grid items-center cursor-pointer relative">
         <div
@@ -103,9 +103,9 @@ export default function SearchBar() {
 
       <div
         onClick={() => handleSubmit()}
-        className="border-l flex items-center justify-center p-2 cursor-pointer"
+        className="border-l group  flex items-center justify-center p-2 cursor-pointer"
       >
-        <CiSearch className="text-3xl text-gray-500" />
+        <CiSearch className="text-3xl text-gray-500  " />
       </div>
     </form>
   );

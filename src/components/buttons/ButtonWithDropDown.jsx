@@ -62,7 +62,7 @@ export default function ButtonWithDropDown({
       <LitUpBorderButton />
       {/* show on hover */}
       {isHovered && (
-        <div className="grid gap-2 place-items-center  p-2  w-[400px] h-[400px] absolute right-0 bg-white rounded border ">
+        <div className="grid gap-2 place-items-center  p-2  w-[400px]  absolute right-0 bg-white rounded border ">
           {/* Original Dimension */}
           <button
             onClick={() => {handleDownload(originalImageUrl,photo_title);setIsOpen(true)}}

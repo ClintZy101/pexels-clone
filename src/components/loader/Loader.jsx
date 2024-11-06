@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function Loader() {
+const Loader = () => {
   return (
-    <div className='w-screen h-[1000px] grid place-items-center'>
-        <h1>Loading...</h1>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
     </div>
-  )
-}
+  );
+};
+
+export default Loader;

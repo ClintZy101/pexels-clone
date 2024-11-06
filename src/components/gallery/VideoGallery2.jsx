@@ -1,7 +1,6 @@
 import React from "react";
 import useStore from "../../api/store/globalStore";
 import HoverPlayVideo from "./HoverPlayVideo";
-import Loader from "../loader/Loader";
 import { Link } from "react-router-dom";
 
 export default function VideoGallery2() {
@@ -9,10 +8,9 @@ export default function VideoGallery2() {
   console.log(videos);
   return (
     <div>
-      <div className="p-5 flex">
-        <h1 className="font-semibold text-3xl">
-          Free Videos: Provided by PEXELS
-        </h1>
+      <div className="p-5 flex items-baseline space-x-3">
+        <h1 className="font-semibold text-3xl">{`Free ${videos.length} Videos`}</h1>
+        <h2 className="font-medium">(provided by PEXELS)</h2>
       </div>
       {/* Video Collection */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-5 px-5 mx-auto ">

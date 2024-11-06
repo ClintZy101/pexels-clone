@@ -5,6 +5,7 @@ import SearchBar from "../components/search/SearchBar";
 import useStore from "../api/store/globalStore";
 import VideoGallery2 from "../components/gallery/VideoGallery2";
 import { bgURL } from "../api/data/backgroundURL";
+import Loader from "../components/loader/Loader";
 
 export default function Home() {
   // create component for video rendering
@@ -32,8 +33,6 @@ export default function Home() {
     }
   }, [chosenGallery]);
 
- 
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
@@ -57,7 +56,7 @@ export default function Home() {
             bgURL.length > 0 ? `url(${bgURL[currentImageIndex].url})` : "none",
         }}
       >
-        <div className="mx-5 bg-black bg-opacity-50 p-5 rounded-xl">
+        <div className="mx-5 bg-black bg-opacity-50 p-5 rounded-xl inline-block">
           <h1 className="text-white font-semibold text-3xl mb-2 ">
             The best free stock photos, royalty free <br /> images & videos
             shared by creators.
@@ -83,17 +82,18 @@ export default function Home() {
         >
           Videos
         </h1>
-        {/* <h1
-          className={`${
-            chosenGallery === "trending" ? "font-bold" : ""
-          } text-2xl  cursor-pointer hover:underline`}
-          onClick={() => setChosenGallery("trending")}
-        >
-          Trending
-        </h1> */}
+      
       </div>
-      {chosenGallery === "Photos" && <PhotoGallery images={images} />}
-      {chosenGallery === "Videos" && <VideoGallery2 videos={videos} />}
+      {loadingPhotos ? (
+        <Loader />
+      ) : (
+        chosenGallery === "Photos" && <PhotoGallery images={images} />
+      )}
+      {loadingVideos ? (
+        <Loader />
+      ) : (
+        chosenGallery === "Videos" && <VideoGallery2 videos={videos} />
+      )}
     </div>
   );
 }
