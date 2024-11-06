@@ -53,11 +53,11 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex bg-white rounded  text-black border  w-[500px]  md:w-[700px]"
+      className="flex bg-white rounded  text-black border  sm:w-[500px]  md:w-[700px] mx-auto"
     >
       <div className="border-r rounded grid items-center cursor-pointer relative">
         <div
-          className="flex p-2 space-x-2 items-center justify-center w-[150px]"
+          className="flex p-2 space-x-2 items-center justify-center sm:w-[150px]"
           onClick={() => handleDropdown()}
         >
           <h1 className="">{!searchType ? "Photos" : searchType}</h1>
@@ -66,7 +66,7 @@ export default function SearchBar() {
         </div>
         {/* Drop Down */}
         <div
-          className={`absolute -bottom-24 border  bg-white rounded h-24 w-[150px] gap-2 py-2 justify-center items-center  ${
+          className={`absolute -bottom-24 border  bg-white rounded h-24 sm:w-[150px] gap-2 py-2 justify-center items-center  ${
             isOpen ? "grid" : "hidden"
           }  `}
         >

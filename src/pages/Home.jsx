@@ -2,20 +2,17 @@ import React from "react";
 import PhotoGallery from "../components/gallery/PhotoGallery";
 import { useState, useEffect } from "react";
 import SearchBar from "../components/search/SearchBar";
-import HoverPlayVideo from "../components/gallery/HoverPlayVideo";
-import VideoGallery from "../components/gallery/VideoGallery";
-// import { useStore } from "zustand";
 import useStore from "../api/store/globalStore";
 import VideoGallery2 from "../components/gallery/VideoGallery2";
+import { bgURL } from "../api/data/backgroundURL";
 
 export default function Home() {
-
   // create component for video rendering
   // implement cloudinary to play video on hover
 
-
   const [chosenGallery, setChosenGallery] = useState("Photos");
   const [query, setQuery] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const {
     images,
@@ -35,12 +32,33 @@ export default function Home() {
     }
   }, [chosenGallery]);
 
+ 
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === bgURL.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(intervalId);
+  }, [bgURL]);
+
   return (
     <div className="smooth-scroll">
       {/* Hero */}
-      <div className=" h-[600px] bg-[url('/bg-1.jpg')]  bg-no-repeat bg-cover border-b border-solid grid justify-center items-center ">
-        <div className="mx-5">
-          <h1 className="text-white font-semibold text-3xl mb-2">
+      {/* bg-[url('/bg-1.jpg')]  */}
+      {/* bg-gradient-to-r from-violet-500 to-fuchsia-500 */}
+      <div
+        className={` h-[600px]   bg-no-repeat bg-cover border-b border-solid grid justify-center items-center `}
+        // style={{ backgroundImage: url('/bg-1.jpg') }}
+        style={{
+          backgroundImage:
+            bgURL.length > 0 ? `url(${bgURL[currentImageIndex].url})` : "none",
+        }}
+      >
+        <div className="mx-5 bg-black bg-opacity-50 p-5 rounded-xl">
+          <h1 className="text-white font-semibold text-3xl mb-2 ">
             The best free stock photos, royalty free <br /> images & videos
             shared by creators.
           </h1>

@@ -27,7 +27,7 @@ export default function VideoGallery2() {
               <a href={vid.user.url}>
                 <span className="flex space-x-2 items-center ">
                   <img
-                    src="https://banner2.cleanpng.com/20180613/oaw/aa73wo5kh.webp"
+                    src="https://t3.ftcdn.net/jpg/01/09/40/34/360_F_109403483_qocRmeSFXJ6KlF3yoaDBuI3CZOiNGfCw.jpg"
                     alt={vid.user.name}
                     className="h-7 rounded-md bg-white "
                   />
