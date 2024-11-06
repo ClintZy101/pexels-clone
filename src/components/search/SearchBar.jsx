@@ -102,7 +102,7 @@ export default function SearchBar() {
       />
 
       <div
-        onClick={() => handleSubmit()}
+        onClick={handleSubmit}
         className="border-l group  flex items-center justify-center p-2 cursor-pointer"
       >
         <CiSearch className="text-3xl text-gray-500  " />
