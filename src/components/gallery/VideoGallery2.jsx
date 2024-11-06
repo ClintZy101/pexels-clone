@@ -2,10 +2,11 @@ import React from "react";
 import useStore from "../../api/store/globalStore";
 import HoverPlayVideo from "./HoverPlayVideo";
 import Loader from "../loader/Loader";
+import { Link } from "react-router-dom";
 
 export default function VideoGallery2() {
   const { videos, loadingVideos, error } = useStore();
-  console.log(videos)
+  console.log(videos);
   return (
     <div>
       <div className="p-5 flex">
@@ -15,15 +16,14 @@ export default function VideoGallery2() {
       </div>
       {/* Video Collection */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-5 px-5 mx-auto ">
-       
         {/* video_files[1] = hd quality */}
-        {videos.map((vid)=>(
-            <div className="relative group  cursor-pointer xl:h-[300px] xl:w-[400px]">
+        {videos.map((vid) => (
+          <div className="relative group  cursor-pointer xl:h-[300px] xl:w-[400px]">
+            <Link to={`/video/${vid.id}`} state={vid}>
             <HoverPlayVideo videoSrc={vid.video_files[1]} key={vid.id} />
-
-             {/* Photographer Link */}
-          <div className="absolute top-0 hidden group-hover:block bg-black bg-opacity-10 p-5 w-full">
-              
+            </Link>
+            {/* Photographer Link */}
+            <div className="absolute top-0 hidden group-hover:block bg-black bg-opacity-10 p-5 w-full">
               <a href={vid.user.url}>
                 <span className="flex space-x-2 items-center ">
                   <img
@@ -31,14 +31,14 @@ export default function VideoGallery2() {
                     alt={vid.user.name}
                     className="h-7 rounded-md bg-white "
                   />
-                  <h4 className="font-bold text-white hover:text-black hover:bg-slate-50 transition-all duration-500">{vid.user.name}</h4>
+                  <h4 className="font-bold text-white hover:text-black hover:bg-slate-50 transition-all duration-500">
+                    {vid.user.name}
+                  </h4>
                 </span>
               </a>
             </div>
-            </div>
+          </div>
         ))}
-
-         
       </div>
     </div>
   );

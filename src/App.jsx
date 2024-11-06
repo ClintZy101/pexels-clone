@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import SinglePhoto from "./pages/SinglePhoto";
+import SingleVideo from "./pages/SingleVideo";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/photo/:id" element={<SinglePhoto />} />
+        <Route path="/video/:id" element={<SingleVideo />} />
       </Routes>
     </BrowserRouter>
   );

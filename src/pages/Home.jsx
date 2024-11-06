@@ -6,6 +6,7 @@ import HoverPlayVideo from "../components/gallery/HoverPlayVideo";
 import VideoGallery from "../components/gallery/VideoGallery";
 // import { useStore } from "zustand";
 import useStore from "../api/store/globalStore";
+import VideoGallery2 from "../components/gallery/VideoGallery2";
 
 export default function Home() {
 
@@ -74,7 +75,7 @@ export default function Home() {
         </h1> */}
       </div>
       {chosenGallery === "Photos" && <PhotoGallery images={images} />}
-      {chosenGallery === "Videos" && <VideoGallery videos={videos} />}
+      {chosenGallery === "Videos" && <VideoGallery2 videos={videos} />}
     </div>
   );
 }
