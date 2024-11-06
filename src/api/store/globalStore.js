@@ -32,6 +32,7 @@ const useStore = create((set) => ({
       }
     } else {
       try {
+        set({ loadingPhotos: true });
         const response = await fetch(
           `https://api.pexels.com/v1/search?query=${query}&per_page=80`,
           {
@@ -50,6 +51,7 @@ const useStore = create((set) => ({
   },
 
   fetchVideos: async (query) => {
+    set({ loadingVideos: true });
     if (query === "") {
       set({ loadingVideos: true });
       try {
@@ -67,6 +69,7 @@ const useStore = create((set) => ({
       }
     } else {
       try {
+        set({ loadingVideos: true });
         const response = await fetch(
           `https://api.pexels.com/videos/search?query=${query}&per_page=80`,
           {
