@@ -1,32 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { CiImageOn, CiSearch, CiVideoOn } from "react-icons/ci";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useStore from "../../api/store/globalStore";
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchType, setSearchType] = useState("Photos");
-  const [searchWord, setSearchWord] = useState("");
   const navigate = useNavigate();
+
+  const {
+    setSearchType,
+    setQuery,
+    searchType,
+    query,
+    fetchPhotos,
+    fetchVideos,
+  } = useStore();
 
   const handleDropdown = () => {
     setIsOpen(!isOpen);
   };
   const handleInputChange = (e) => {
-    setSearchWord(e.target.value);
+    setQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
     // Pass data along with navigation using the `state` option
     e.preventDefault();
-    navigate("/search", { state: { searchType, searchWord }});
+    if (searchType === "Photos") {
+      fetchPhotos(query);
+    } else if (searchType === "Videos") {
+      fetchVideos(query);
+    }
+    setQuery("");
+    navigate("/search");
   };
 
-
   return (
-    <form 
-    onSubmit={handleSubmit}
-    className="flex bg-white rounded relative ">
+    <form
+      onSubmit={handleSubmit}
+      className="flex bg-white rounded  text-black border  w-[500px]  md:w-[700px]"
+    >
       <div className="border-r rounded grid items-center cursor-pointer relative">
         <div
           className="flex p-2 space-x-2 items-center justify-center w-[150px]"
@@ -65,20 +79,20 @@ export default function SearchBar() {
         </div>
       </div>
 
-        <input
-          type="text"
-          placeholder={`Search Free ${searchType}`}
-          className="h-12 w-full outline-none px-2 rounded"
-          // value={searchWord}
-          onChange={handleInputChange}
-        />
-    <Link to="/search" state={{searchType, searchWord}}>
+      <input
+        type="text"
+        placeholder={`Search Free ${searchType}`}
+        className="h-12 w-full outline-none px-2 rounded"
+        value={query}
+        onChange={handleInputChange}
+      />
+
       <div
+        onClick={() => handleSubmit()}
         className="border-l flex items-center justify-center p-2 cursor-pointer"
       >
         <CiSearch className="text-3xl text-gray-500" />
       </div>
-      </Link>
     </form>
   );
 }

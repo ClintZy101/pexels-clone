@@ -65,7 +65,7 @@ export default function ButtonWithDropDown({
         <div className="grid gap-2 place-items-center  p-2  w-[400px] h-[400px] absolute right-0 bg-white rounded border ">
           {/* Original Dimension */}
           <button
-            onClick={() => handleDownload(originalImageUrl,photo_title)}
+            onClick={() => {handleDownload(originalImageUrl,photo_title);setIsOpen(true)}}
             className="flex space-x-5 hover:bg-gray-100 w-full justify-center items-center border-b h-12"
           >
             <h2 className="font-bold">Original</h2>

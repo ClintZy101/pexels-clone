@@ -4,71 +4,38 @@ import { useState, useEffect } from "react";
 import SearchBar from "../components/search/SearchBar";
 import HoverPlayVideo from "../components/gallery/HoverPlayVideo";
 import VideoGallery from "../components/gallery/VideoGallery";
+// import { useStore } from "zustand";
+import useStore from "../api/store/globalStore";
 
 export default function Home() {
-  // implement a useHook on this for performance's sake
 
-  // const API_URL = "https://api.pexels.com/v1/";
-  const curatedEndPoint = ` https://api.pexels.com/v1/curated?per_page=80`;
-  const popularVideosEndPoint =
-    "https://api.pexels.com/videos/popular?per_page=80";
-  const [chosenGallery, setChosenGallery] = useState("photos");
-  const [isLoading, setIsLoading] = useState(false)
-  const [videos, setVideos] = useState([]);
-  const [images, setImages] = useState([]);
+  // create component for video rendering
+  // implement cloudinary to play video on hover
 
- 
 
-  const fetchData = async () => {
-    if (chosenGallery === "photos") {
-      setIsLoading(true);
-      try {
-        const response = await fetch(curatedEndPoint, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
-          },
-        });
-        const data = await response.json();
-        setImages(data.photos);
-      } catch (error) {
-        setError("Something went wrong...");
-      } finally {
-        setIsLoading(false);
-      }
-    } else if (chosenGallery === "videos") {
-      setIsLoading(true);
-      try {
-        const response = await fetch(popularVideosEndPoint, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
-          },
-        });
-        const data = await response.json();
-        setVideos(data.videos);
-      } catch (error) {
-        setError("Something went wrong...");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
+  const [chosenGallery, setChosenGallery] = useState("Photos");
+  const [query, setQuery] = useState("");
+
+  const {
+    images,
+    videos,
+    loadingPhotos,
+    loadingVideos,
+    error,
+    fetchPhotos,
+    fetchVideos,
+  } = useStore();
 
   useEffect(() => {
-    // fetchData();
+    if (chosenGallery === "Photos") {
+      fetchPhotos(query);
+    } else if (chosenGallery === "Videos") {
+      fetchVideos(query);
+    }
   }, [chosenGallery]);
 
-  //   console.log(images);
-
-  // create functions  implement useHooks
-  // filter images by size
-  // create a modal for each picture
-
   return (
-    <div>
+    <div className="smooth-scroll">
       {/* Hero */}
       <div className=" h-[600px] bg-[url('/bg-1.jpg')]  bg-no-repeat bg-cover border-b border-solid grid justify-center items-center ">
         <div className="mx-5">
@@ -83,17 +50,17 @@ export default function Home() {
       <div className="flex justify-center space-x-5 pt-5">
         <h1
           className={`${
-            chosenGallery === "photos" ? "font-bold" : ""
+            chosenGallery === "Photos" ? "font-bold" : ""
           } text-2xl  cursor-pointer hover:underline`}
-          onClick={() => setChosenGallery("photos")}
+          onClick={() => setChosenGallery("Photos")}
         >
           Photos
         </h1>
         <h1
           className={`${
-            chosenGallery === "videos" ? "font-bold" : ""
+            chosenGallery === "Videos" ? "font-bold" : ""
           } text-2xl  cursor-pointer hover:underline`}
-          onClick={() => setChosenGallery("videos")}
+          onClick={() => setChosenGallery("Videos")}
         >
           Videos
         </h1>
@@ -106,10 +73,8 @@ export default function Home() {
           Trending
         </h1> */}
       </div>
-      {chosenGallery === 'photos' && <PhotoGallery images={images} /> }
-      {chosenGallery === 'videos' && <VideoGallery videos={videos}/> }
-      
-    
+      {chosenGallery === "Photos" && <PhotoGallery images={images} />}
+      {chosenGallery === "Videos" && <VideoGallery videos={videos} />}
     </div>
   );
 }

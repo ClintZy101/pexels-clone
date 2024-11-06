@@ -2,73 +2,53 @@ import React, { Suspense, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PhotoGallery from "../components/gallery/PhotoGallery";
 import VideoGallery from "../components/gallery/VideoGallery";
+import SearchBar from "../components/search/SearchBar";
+import useStore from "../api/store/globalStore";
 
-const Loading = () => <div>loading...</div>;
+const Loading = () => (
+  <div className="absolute top-0 w-screen h-[1000px]">
+    <button type="button" class="bg-indigo-500 ..." disabled>
+      <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"></svg>
+      Loading...
+    </button>
+  </div>
+);
 
 export default function Search() {
-  const location = useLocation();
-  const { searchType, searchWord } = location.state;
-  const [images, setImages] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const {
+    images,
+    videos,
+    loadingPhotos,
+    loadingVideos,
+    error,
+    query,
+    setQuery,
+    searchType,
+    setSearchType,
+    fetchPhotos,
+    fetchVideos,
+  } = useStore();
 
-  const imageSearchEndPoint = `https://api.pexels.com/v1/search?query=${searchWord}&per_page=80`;
-  const videoSearchEndPoint = `https://api.pexels.com/videos/search?query=${searchWord}&per_page=80`;
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  //  console.log(location.state)
-  //   console.log(searchType, searchWord)
-
-  const fetchData = async () => {
-    if (searchType === "Photos") {
-      setIsLoading(true);
-      try {
-        const response = await fetch(imageSearchEndPoint, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
-          },
-        });
-        const data = await response.json();
-        setImages(data.photos);
-        console.log(data);
-      } catch (error) {
-        setError("Something went wrong...");
-      } finally {
-        setIsLoading(false);
-      }
-    } else if (searchType === "Videos") {
-      setIsLoading(true);
-      try {
-        const response = await fetch(videoSearchEndPoint, {
-          method: "GET",
-          headers: {
-            Authorization:
-              "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
-          },
-        });
-        const data = await response.json();
-        setVideos(data.videos);
-      } catch (error) {
-        setError("Something went wrong...");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
-
+  // const location = useLocation();
+  // const { searchType, searchWord } = location.state;
+  
   useEffect(() => {
-    fetchData();
-  }, []);
-  console.log(images || videos);
+    if (searchType === 'Photos'){
+      fetchPhotos(query)
+    } else if(searchType === 'Videos'){
+      fetchVideos(query)
+    }
+   
+  }, [searchType]);
+  // console.log(images || videos);
+  console.log(searchType, query)
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="pb-20">
+    <div className="pt-20 ">
+      <div className="w-full flex justify-center sticky top-1 z-50 "><SearchBar /></div>
+      <Suspense fallback={<Loading />}>
         {searchType === "Photos" && <PhotoGallery images={images} />}
         {searchType === "Videos" && <VideoGallery videos={videos} />}
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }

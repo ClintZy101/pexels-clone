@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import useStore from "../../api/store/globalStore";
 
 export default function PhotoGallery({ images }) {
-  // const [modalIsOpen, setModalIsOpen] = useState(false)
+  const {query, searchType} = useStore();
 
   return (
-    <div>
+    <div className="">
       {/* Heading */}
-      <div className="p-5 flex">
-        <h1 className="font-bold text-xl">Free Videos: provided by PEXELS</h1>
+      <div className="p-5 flex items-baseline space-x-3">
+        <h1 className="font-semibold text-3xl">{`${query} Free Photos`}</h1>
+        <h2 className="font-medium">(provided by PEXELS)</h2>
       </div>
 
       {/* Image Collection */}
