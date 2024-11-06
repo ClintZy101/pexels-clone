@@ -68,7 +68,7 @@ const useStore = create((set) => ({
     } else {
       try {
         const response = await fetch(
-          `https://api.pexels.com/videos/search?query=${query}&per_page=80`,
+          `https://api.pexels.com/videos/search?query=${query}&per_page=16`,
           {
             headers: {
               Authorization:

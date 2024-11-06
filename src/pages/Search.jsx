@@ -4,6 +4,7 @@ import PhotoGallery from "../components/gallery/PhotoGallery";
 import VideoGallery from "../components/gallery/VideoGallery";
 import SearchBar from "../components/search/SearchBar";
 import useStore from "../api/store/globalStore";
+import VideoGallery2 from "../components/gallery/VideoGallery2";
 
 const Loading = () => (
   <div className="absolute top-0 w-screen h-[1000px]">
@@ -47,7 +48,7 @@ export default function Search() {
       <div className="w-full flex justify-center sticky top-1 z-50 "><SearchBar /></div>
       <Suspense fallback={<Loading />}>
         {searchType === "Photos" && <PhotoGallery images={images} />}
-        {searchType === "Videos" && <VideoGallery videos={videos} />}
+        {searchType === "Videos" && <VideoGallery2 videos={videos} />}
       </Suspense>
     </div>
   );

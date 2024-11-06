@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { CiImageOn, CiSearch, CiVideoOn } from "react-icons/ci";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useStore from "../../api/store/globalStore";
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+  // const [isAtHome, setIsAtHome] = useState(true);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     setSearchType,
     setQuery,
@@ -24,18 +26,30 @@ export default function SearchBar() {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    // Pass data along with navigation using the `state` option
-    e.preventDefault();
-    if (searchType === "Photos") {
-      fetchPhotos(query);
-    } else if (searchType === "Videos") {
-      fetchVideos(query);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // if (searchType === "Photos") {
+    //   fetchPhotos(query);
+    // } else if (searchType === "Videos") {
+    //   fetchVideos(query);
+    // };
+    switch(searchType){
+      case "Photos":
+        fetchPhotos(query)
+        break;
+      case "Videos":
+        fetchVideos(query)
     }
-    setQuery("");
-    navigate("/search");
+
+    if (location.pathname === "/") {
+      navigate("/search");
+    } else {
+      console.log(location.pathname)
+    }
   };
 
+  console.log(location.pathname);
   return (
     <form
       onSubmit={handleSubmit}
@@ -46,7 +60,7 @@ export default function SearchBar() {
           className="flex p-2 space-x-2 items-center justify-center w-[150px]"
           onClick={() => handleDropdown()}
         >
-          <h1 className="">{searchType}</h1>
+          <h1 className="">{!searchType ? "Photos" : searchType}</h1>
 
           <BiChevronDown />
         </div>

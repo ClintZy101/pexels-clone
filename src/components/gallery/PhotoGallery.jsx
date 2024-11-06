@@ -9,7 +9,7 @@ export default function PhotoGallery({ images }) {
     <div className="">
       {/* Heading */}
       <div className="p-5 flex items-baseline space-x-3">
-        <h1 className="font-semibold text-3xl">{`${query} Free Photos`}</h1>
+        <h1 className="font-semibold text-3xl">{`Free Photos`}</h1>
         <h2 className="font-medium">(provided by PEXELS)</h2>
       </div>
 
