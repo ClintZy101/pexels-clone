@@ -29,9 +29,9 @@ const HoverPlayVideo = ({ videoSrc, width = '400px', height = '300px' }) => {
   //   }, 100); // Adjust delay as needed
   // };
 
-  useEffect(()=>{
-    console.log(videoSrc)
-  },[])
+  // useEffect(()=>{
+  //   console.log(videoSrc)
+  // },[])
 
   return (
     <div
