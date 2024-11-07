@@ -49,7 +49,7 @@ export default function SearchBar() {
     }
   };
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
   return (
     <form
       onSubmit={handleSubmit}

@@ -24,8 +24,11 @@ const useStore = create((set) => ({
               "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
           },
         });
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         set({ images: data.photos, loadingPhotos: false });
       } catch (error) {
         set({ error: error.message, loadingPhotos: false });
@@ -42,6 +45,9 @@ const useStore = create((set) => ({
             },
           }
         );
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
         const data = await response.json();
         set({ images: data.photos, loadingPhotos: false });
       } catch (error) {
@@ -61,8 +67,11 @@ const useStore = create((set) => ({
               "BPf0TOusbUHw2nGmGqLIctXjZEOYeURg1clScDimB5FEllMFMTCzgdbC",
           },
         });
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         set({ videos: data.videos, loadingVideos: false });
       } catch (error) {
         set({ error: error.message, loadingVideos: false });
@@ -79,6 +88,9 @@ const useStore = create((set) => ({
             },
           }
         );
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
         const data = await response.json();
         set({ videos: data.videos, loadingVideos: false });
       } catch (error) {

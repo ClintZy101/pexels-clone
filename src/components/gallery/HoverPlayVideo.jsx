@@ -29,9 +29,17 @@ const HoverPlayVideo = ({ videoSrc, width = '400px', height = '300px' }) => {
   //   }, 100); // Adjust delay as needed
   // };
 
+
   // useEffect(()=>{
-  //   console.log(videoSrc)
+  //   // console.log(videoSrc)
+  //   if (videoSrc) {
+  //     console.log(videoSrc.link); // Access 'link' only if videoSrc exists
+  //   } else {
+  //     console.error("No video found with the specified dimensions.");
+  //   }
   // },[])
+
+  console.log(videoSrc)
 
   return (
     <div
@@ -49,8 +57,7 @@ const HoverPlayVideo = ({ videoSrc, width = '400px', height = '300px' }) => {
         loop
       >
         <source src={videoSrc.link} type={videoSrc.file_type} />
-      {/* <source src={videoSrc} type="video/webm" />
-      <source src={videoSrc}type="video/ogg" /> */}
+        {/* {videoSrc.link.map(l => (<source src={l} type))} */}
       </video>
       
     </div>
